@@ -1,0 +1,42 @@
+:root {
+    --countColor: #282723;
+    --playBtnColor: #514f47;
+    --playBtnHover: #666359;
+    --titleColor: #141311;
+    --btnColor: #666359;
+}
+
+.btn {
+    border: none;
+    padding: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: var(--btnColor);
+    color: white;
+}
+
+.btn-play {
+    background-color: var(--playBtnColor);
+}
+
+.btn-play:hover {
+    background-color: var(--playBtnHover);
+}
+
+.timeDisplay {
+    font-size: 200px;
+    color: var(--countColor);
+}
+
+.titleCounter {
+    color: var(--titleColor);
+}
+
+.counterContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f4faff;
+}
