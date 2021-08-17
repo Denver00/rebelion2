@@ -1,12 +1,42 @@
-import { faHistory, faPause, faPlay } from '@fortawesome/free-solid-svg-icons';
+import { faHistory, faPause, faPlay, faChess } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
 import ReactTooltip from 'react-tooltip';
 import './counter.css';
-
+import Modal from 'react-modal';
+import logo from "../assets/img/rebelion.png";
 export default function App() {
     const [timer, setTimer] = useState(0);
     const [toggle, setToggle] = useState(false);
+    const [modalIsOpen, setIsOpen] = React.useState(false);
+    const [modalIsOpen2, setIsOpen2] = React.useState(false);
+    const [guestTeam, setGuestTeam] = useState("");
+    const [localTeam, setLocalTeam] = useState("");
+    const [textBox, setTextBox] = useState("");
+    const [textBox2, setTextBox2] = useState("");
+    const customStyles = {
+        content: {
+          top: '50%',
+          left: '50%',
+          right: 'auto',
+          bottom: 'auto',
+          marginRight: '-50%',
+          transform: 'translate(-50%, -50%)',
+        },
+      };
+
+    function openModal() {
+        setIsOpen(true);
+      }
+    function closeModal() {
+        setIsOpen(false);
+      }
+    function openModal2() {
+        setIsOpen2(true);
+      }
+    function closeModal2() {
+        setIsOpen2(false);
+      }
 
     useEffect(() => {
         let counter;
@@ -42,12 +72,28 @@ export default function App() {
         if (seconds < 10) { seconds = "0" + seconds; }
         return hours + ':' + minutes + ':' + seconds;
     }
+    const localTeamhandler=(event)=>{
+         setLocalTeam(event.target.value); 
+        }
+        const guestTeamhandler=(event)=>{
+            setGuestTeam(event.target.value); 
+           }
+    const textBoxhandler=(event)=>{
+        setTextBox(event.target.value); 
+        }
+        const textBoxhandler2=(event)=>{
+            setTextBox2(event.target.value); 
+            }
 
     return (
+        
         <div className="counterContainer">
             <div>
-                <h1 class="titleCounter">Cronometro</h1>
-                <h1 class="timeDisplay">{format(timer)}</h1>
+                <div className="title">
+                <div className="titleCounter"><h1>{localTeam}</h1></div><img src={logo} width="400"></img><div className="titleCounter2"><h1>{guestTeam}</h1></div>
+                </div>
+                <div><h1 className="fightsCounter">Valor de la riña: {textBox}</h1><h1 className="fightsCounter">Riña #{textBox2}</h1></div>
+                <h1 className="timeDisplay">{format(timer)}</h1>
                 <br />
                 <button
                     data-tip={!toggle ? 'Iniciar' : 'Pausar'}
@@ -59,7 +105,42 @@ export default function App() {
                     className="btn" onClick={handleReset}>
                     <FontAwesomeIcon icon={faHistory} />
                 </button>
-            </div>
+                <button
+                data-tip="Agregar equipos"
+                className="btn btn-vs" onClick={openModal}>
+                <FontAwesomeIcon icon={faChess}></FontAwesomeIcon>
+                </button>
+                <button
+                data-tip="Agregar Peleas"
+                className="btn btn-vs2" onClick={openModal2}>
+                <FontAwesomeIcon icon={faChess}></FontAwesomeIcon>
+                </button>
+                </div>
+        
+            <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Equipos"
+      >  
+        <div className="modal-container">
+        <p>Agregar Equipos</p>
+        <input type="text" value={localTeam} onChange={localTeamhandler}></input>
+        <input type="text" value={guestTeam} onChange={guestTeamhandler}></input>
+        </div>
+      </Modal>
+      <Modal
+        isOpen={modalIsOpen2}
+        onRequestClose={closeModal2}
+        style={customStyles}
+        contentLabel="Equipos">  
+        <div className="modal-container">
+        <p>Valor de la riña y numero</p>
+        <input type="text" value={textBox} onChange={textBoxhandler} /*onKeyPress={addfile}]*/></input>
+        <input type="text" value={textBox2} onChange={textBoxhandler2} /*onKeyPress={addfile}]*/></input>
+        </div>
+      </Modal> 
+      
             <ReactTooltip />
         </div>
     );

@@ -6,6 +6,16 @@
     --btnColor: #666359;
 }
 
+.modal-container{
+    text-align: center;
+}
+
+.title{
+display: flex;
+gap: 10px;
+align-items: center;
+}
+
 .btn {
     border: none;
     padding: 20px;
@@ -15,8 +25,12 @@
     background-color: var(--btnColor);
     color: white;
 }
+.btn-vs,.btn-vs2 {
+    margin-top: 10px;
 
-.btn-play {
+}
+
+.btn-play,.btn-vs {
     background-color: var(--playBtnColor);
 }
 
@@ -25,18 +39,45 @@
 }
 
 .timeDisplay {
-    font-size: 200px;
+    font-size: 120px;
+    margin: 50px;
     color: var(--countColor);
 }
 
+.titleIcon{
+    display: block;
+}
 .titleCounter {
+    color: white;
+    font-size: 66px;
+    background: blue;
+    height: fit-content;
+    text-transform: uppercase;
+    padding-left: 10px;
+    align-items: left;
+}
+
+.titleCounter2 {
+    color: white;
+    font-size: 66px;
+    background: red;
+    height: fit-content;
+    margin: 0;
+    text-transform: uppercase;
+    padding-right: 10px;
+    align-items: right;
+}
+
+.fightsCounter {
     color: var(--titleColor);
+    font-size: 66px;
+    text-transform: uppercase;
 }
 
 .counterContainer {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 100%;
     background-color: #f4faff;
 }
